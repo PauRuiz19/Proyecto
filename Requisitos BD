@@ -1,0 +1,4 @@
+REQUISITOS DATOS PARA LA BD
+Jugadores - Nombre usuario, partidas jugadas, puntos totales, manos ganadas y perdidas
+Partidas - Todas las partidas jugadas, participantes (relacionando la tabla de jugadores), Ganador, puntuación de cada jugador
+Ronda - Participantes, Mano inicial, Apuesta, Victoria y tipo de victoria, Derrota, puntos iniciales y puntos finales
