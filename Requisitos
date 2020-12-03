@@ -1,0 +1,19 @@
+Jugador: puntuación_inicial, puntuación_final, puntuación, 
+-Humano: usuario, contraseña, email
+-Bot: nombre_bot
+
+Partida: apuesta (inicial, mínima y máxima), hora (inicial y final)
+
+Juego: nombre, reglas (victoria y derrota)
+
+Turnos: 
+
+Acción: pasar, robar
+
+Baraja: tipo_baraja
+
+Cartas: palo, valor_real, valor_juego
+
+_REFERENCIA:_
+ENTIDAD: ATRIBUTO (TIPO DE ATRIBUTO)
+-TIPO DE ENTIDAD [también es una entidad]
