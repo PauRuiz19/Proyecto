@@ -61,20 +61,13 @@ else:
                         print(lista_jugadores[i] + " (Banca): Puntos totales=", lista_jugadores_juego[i][lista_jugadores[i]][6],", Puntos apostados=", lista_jugadores_juego[i][lista_jugadores[i]][5])
                     else:
                         print(lista_jugadores[i]+": Puntos totales=",lista_jugadores_juego[i][lista_jugadores[i]][6],", Puntos apostados=",lista_jugadores_juego[i][lista_jugadores[i]][5])
-                apuesta=int(input("Cuantos puntos quieres apostar?"))
                 apuesta_valida=False
                 #Crecimiento de apuestas:
-                Mano
-                1 - 5: Apuesta
-                min.: 2
-                ptos. - Apuesta
-                max.: 5
-                ptos.
-                Mano
-                6 - 12: Apuesta min.: 3 ptos. - Apuesta max.: 6 ptos.
-                Mano 13 - 18: Apuesta min.: 4 ptos. - Apuesta max.: 8 ptos.
-                Mano 19 - 25: Apuesta min.: 5ptos. - Apuesta max.: 10ptos.
-                Mano 26 - 30: Apuesta min.: 6ptos. - Apuesta max.: 12ptos.
+                #Mano 1 - 5: Apuesta min.: 2 ptos. - Apuesta max.: 5  ptos.
+                #Mano 6 - 12: Apuesta min.: 3 ptos. - Apuesta max.: 6 ptos.
+                #Mano 13 - 18: Apuesta min.: 4 ptos. - Apuesta max.: 8 ptos.
+                #Mano 19 - 25: Apuesta min.: 5ptos. - Apuesta max.: 10ptos.
+                #Mano 26 - 30: Apuesta min.: 6ptos. - Apuesta max.: 12ptos.
                 if lista_jugadores_juego[i][lista_jugadores[i]][7]>=1 and lista_jugadores_juego[i][lista_jugadores[i]][7]<=5:
                     apuesta_minima=2
                     apuesta_maxima=5
@@ -87,9 +80,30 @@ else:
                 elif lista_jugadores_juego[i][lista_jugadores[i]][7]>=6 and lista_jugadores_juego[i][lista_jugadores[i]][7]<=12:
                     apuesta_minima=3
                     apuesta_maxima=6
+                elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 13 and lista_jugadores_juego[i][lista_jugadores[i]][7] <= 18:
+                    apuesta_minima=4
+                    apuesta_maxima=8
+                elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 19 and lista_jugadores_juego[i][lista_jugadores[i]][7] <= 25:
+                    apuesta_minima=5
+                    apuesta_maxima=10
+                elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 26 and lista_jugadores_juego[i][lista_jugadores[i]][7] <= 30:
+                    apuesta_minima=6
+                    apuesta_maxima=12
                 while apuesta_valida==False:
-                lista_jugadores_juego[i][lista_jugadores[i]][5]=apuesta
-                lista_jugadores_juego[i][lista_jugadores[i]][6]=lista_jugadores_juego[i][lista_jugadores[i]][6]-apuesta
+                    apuesta = int(input("Cuantos puntos quieres apostar? (min. "+str(apuesta_minima)+" , max."+str(apuesta_maxima)))
+                    if apuesta<apuesta_minima or apuesta>apuesta_maxima:
+                        print("Mínimo=",apuesta_minima,", Máximo=",apuesta_maxima)
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][6]-apuesta<0:
+                        print("No puedes apostar más puntos de los que tienes")
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][6]<apuesta_minima:
+                        print("La apuesta mínima es mayor que tus puntos restantes. Debes apostar todos tus puntos")
+                        apuesta_minima=lista_jugadores_juego[i][lista_jugadores[i]][6]
+                    else:
+                        apuesta_valida=True
+                else:
+                    lista_jugadores_juego[i][lista_jugadores[i]][5]=apuesta
+                    lista_jugadores_juego[i][lista_jugadores[i]][6]=lista_jugadores_juego[i][lista_jugadores[i]][6]-apuesta
+
 
 
 
