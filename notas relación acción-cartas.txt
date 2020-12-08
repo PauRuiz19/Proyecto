@@ -1,0 +1,5 @@
+relación accion-cartas:
+-puedes obtener cartas sin hacer ninguna acción. por ejemplo:
+al decidir el orden de juego
+al empezar el turno, siempre empiezas con una carta sin realizar ninguna acción
+
