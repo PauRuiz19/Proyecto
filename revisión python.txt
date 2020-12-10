@@ -1,0 +1,71 @@
+-las variables que se añaden con un int(input()), si escribo algo que no sea solo números (aunque sea un enter), el juego deja de funcionar. Sé que es normal pero, como seguramente se forzarán los fallos, se notará que fallará.
+-haria falta, para que se vea mejor visualmente, añadir un espacio a parte cada vez que se haga una acción.
+ Cuando eliges las opciones (pedir carta o plantarse, por ejemplo), se ve bien igualmente pero, cuando se hace
+ la parte del enter, se queda todo junto.
+-en el fragmento de código del crecimiento de las apuestas, hay lineas de código que se repiten.
+
+---PARTIDA DE PRUEBA (COMO SE VERIA SI SE AÑADEN ESPACIOS A PARTE)---
+Qué modo de juego quieres jugar?
+1) Modo Juego Manual
+2) Humano contra máquinas
+1
+
+Cuántos jugadores van a jugar? (mín. 2, máx. 8)
+4
+
+Introduce el nombre del jugador: JUGADOR 1
+Solo puede tener números y letras, no puede tener espacios y debe empezar por una letra: JUGADOR1
+Introduce el nombre del jugador: JUGADOR2
+Introduce el nombre del jugador: JUGADOR3
+Introduce el nombre del jugador: JUGADOR4
+
+Orden inicial y carta:
+0. JUGADOR1 (Banca) - 11 de Copas
+1. JUGADOR2 - 11 de Espadas
+2. JUGADOR4 - 2 de Espadas
+3. JUGADOR3 - 1 de Oros
+
+*****Turno de JUGADOR2*****
+Tu carta inicial: 1 de Bastos
+Pulsa ENTER para continuar
+
+Cartas que han salido:
+2 de Bastos
+1 de Bastos
+10 de Espadas
+3 de Espadas
+
+Puntos totales de cada jugador y puntos apostados:
+JUGADOR1 (Banca): Puntos totales= 20
+JUGADOR2: Puntos totales= 20 , Puntos apostados= 0
+JUGADOR4: Puntos totales= 20 , Puntos apostados= 0
+JUGADOR3: Puntos totales= 20 , Puntos apostados= 0
+Cuantos puntos quieres apostar? (min. 2 , max.5) 5
+
+Puntos acumulados en la mano= 1
+Qué quieres hacer?
+1) Pedir Carta
+2) Plantarme
+1
+
+Carta que ha salido: 3 de Copas
+Puntos acumulados en la mano= 4
+Qué quieres hacer?
+1) Pedir Carta
+2) Plantarme
+1
+
+Carta que ha salido: 4 de Copas
+Te has pasado de 7,5!
+Presiona ENTER para continuar
+
+*****Turno de JUGADOR4*****
+Tu carta inicial: 10 de Espadas
+Pulsa ENTER para continuar
+
+
+-otros añadidos menores que pondria:
+	-durante la escritura de los jugadores, indicar en los prints del número de jugador:
+		Introduce el nombre del jugador 1: OSCAR
+		Introduce el nombre del jugador 2: JAVIER
+		Introduce el nombre del jugador 3: PAU
