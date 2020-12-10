@@ -11,12 +11,14 @@ else:
             numero_jugadores=int(input("Debe estar entre 2 y 8: "))
         else:
             lista_jugadores=[]
+            num_jugador=1
             while len(lista_jugadores)<numero_jugadores:
-                nuevo_jugador=str(input("Introduce el nombre del jugador: "))
+                nuevo_jugador=str(input("Introduce el nombre del jugador "+str(num_jugador)+": "))
                 while nuevo_jugador.isalnum()==False:
                     nuevo_jugador = str(input("Solo puede tener números y letras, no puede tener espacios y debe empezar por una letra: "))
                 else:
                     lista_jugadores.append(nuevo_jugador)
+                    num_jugador = num_jugador + 1
         ordenar=[]
         for i in lista_jugadores:
             carta=random.choice(mazo)
@@ -114,14 +116,6 @@ else:
                             lista_jugadores_juego[i][lista_jugadores[i]][7] <= 5:
                         apuesta_minima = 2
                         apuesta_maxima = 5
-                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 6 and \
-                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 12:
-                        apuesta_minima = 3
-                        apuesta_maxima = 6
-                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 13 and \
-                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 18:
-                        apuesta_minima = 4
-                        apuesta_maxima = 8
                     elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 6 and \
                             lista_jugadores_juego[i][lista_jugadores[i]][7] <= 12:
                         apuesta_minima = 3
@@ -303,4 +297,376 @@ else:
 
 
 
-    #elif modo_juego==2:
+    elif modo_juego==2:
+        numero_jugadores = int(input("Cuántos jugadores van a jugar? (incluido jugador humano) (mín. 2, máx. 8)\n"))
+        while numero_jugadores < 2 or numero_jugadores > 8:
+            numero_jugadores = int(input("Debe estar entre 2 y 8: "))
+        else:
+            lista_jugadores = []
+            num_jugador = 0
+            while len(lista_jugadores) < numero_jugadores:
+                if num_jugador==0:
+                    nuevo_jugador = str(input("Introduce el nombre del jugador: "))
+                else:
+                    nuevo_jugador = "BOT"+str(num_jugador)
+                while nuevo_jugador.isalnum() == False:
+                        nuevo_jugador = str(input("Solo puede tener números y letras, no puede tener espacios y debe empezar por una letra: "))
+                else:
+                    lista_jugadores.append(nuevo_jugador)
+                    num_jugador = num_jugador + 1
+
+        ordenar = []
+        for i in lista_jugadores:
+            carta = random.choice(mazo)
+            mazo.remove(carta)
+            ordenar.append([i, carta])
+        for i in range(len(ordenar)):
+            for j in range(0, len(ordenar) - 1):
+                if ordenar[j][1][0] < ordenar[j + 1][1][0]:
+                    ordenar[j], ordenar[j + 1] = ordenar[j + 1], ordenar[j]
+                elif ordenar[j][1][0] == ordenar[j + 1][1][0]:
+                    if ordenar[j][1][1] > ordenar[j + 1][1][1]:
+                        ordenar[j], ordenar[j + 1] = ordenar[j + 1], ordenar[j]
+        for i in ordenar:
+            mazo.append(i[1])
+        print("Orden inicial y carta:")
+
+        for i in range(len(ordenar)):
+            if ordenar[i][1][1] == 1:
+                palo = "Oros"
+            elif ordenar[i][1][1] == 2:
+                palo = "Copas"
+            elif ordenar[i][1][1] == 3:
+                palo = "Bastos"
+            elif ordenar[i][1][1] == 4:
+                palo = "Espadas"
+            if i == 0:
+                print(str(i) + ". " + ordenar[i][0] + " (Banca) - " + str(ordenar[i][1][0]) + " de " + palo)
+            else:
+                print(str(i) + ". " + ordenar[i][0] + " - " + str(ordenar[i][1][0]) + " de " + palo)
+        for i in range(len(lista_jugadores)):
+            lista_jugadores[i] = ordenar[i][0]
+        lista_jugadores_juego = []
+        for i in range(len(lista_jugadores)):
+            # Lista del valor del diccionario: [Lista con las cartas del jugador, Estado mano actual, Estado partida, Prioridad, Puntos acumulados en la mano, Puntos apostados, Puntos restantes, Contador mano actual, BOT o humano]
+            if lista_jugadores[i]!="BOT1" and lista_jugadores[i]!="BOT2" and lista_jugadores[i]!="BOT3" and lista_jugadores[i]!="BOT4" and lista_jugadores[i]!="BOT5" and lista_jugadores[i]!="BOT6" and lista_jugadores[i]!="BOT7":
+                lista_jugadores_juego.append({lista_jugadores[i]: [[], "jugando", "jugando", i, 0, 0, 20, 1,"humano"]})
+            else:
+                lista_jugadores_juego.append({lista_jugadores[i]: [[], "jugando", "jugando", i, 0, 0, 20, 1,"bot"]})
+        cartas_que_han_salido = []
+        print(lista_jugadores_juego)
+        partida = True
+        while partida == True:
+            for i in range(len(lista_jugadores_juego)):
+                if lista_jugadores_juego[i][lista_jugadores[i]][2] == "eliminado":
+                    continue
+                else:
+                    carta = random.choice(mazo)
+                    mazo.remove(carta)
+                    lista_jugadores_juego[i][lista_jugadores[i]][0].append(carta)
+                    lista_jugadores_juego[i][lista_jugadores[i]][4] = carta[2]
+                    cartas_que_han_salido.append(carta)
+            for i in range(1, len(lista_jugadores_juego) + 1):
+                if i == len(lista_jugadores_juego):
+                    i = 0
+                if lista_jugadores_juego[i][lista_jugadores[i]][2] == "eliminado":
+                    continue
+                if lista_jugadores_juego[i][lista_jugadores[i]][1] == "jugando" and \
+                        lista_jugadores_juego[i][lista_jugadores[i]][2] == "jugando":
+                    if i == 0:
+                        print("*" * 5 + "Turno de " + lista_jugadores[i] + " (Banca) " + "*" * 5)
+                    else:
+                        print("*" * 5 + "Turno de " + lista_jugadores[i] + "*" * 5)
+                    lista_jugadores_juego[i][lista_jugadores[i]][7] = lista_jugadores_juego[i][lista_jugadores[i]][7] + 1
+                    if lista_jugadores_juego[i][lista_jugadores[i]][0][0][1] == 1:
+                        palo = "Oros"
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][0][0][1] == 2:
+                        palo = "Copas"
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][0][0][1] == 3:
+                        palo = "Bastos"
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][0][0][1] == 4:
+                        palo = "Espadas"
+                    print("Tu carta inicial:", lista_jugadores_juego[i][lista_jugadores[i]][0][0][0], "de", palo)
+                    input("Pulsa ENTER para continuar")
+                    print("Cartas que han salido:")
+                    for j in cartas_que_han_salido:
+                        if j[1] == 1:
+                            print(j[0], "de Oros")
+                        elif j[1] == 2:
+                            print(j[0], "de Copas")
+                        elif j[1] == 3:
+                            print(j[0], "de Bastos")
+                        elif j[1] == 4:
+                            print(j[0], "de Espadas")
+                    print("Puntos totales de cada jugador y puntos apostados:")
+                    for k in range(len(lista_jugadores_juego)):
+                        if k == 0:
+                            print(lista_jugadores[k] + " (Banca): Puntos totales=",
+                                  lista_jugadores_juego[k][lista_jugadores[k]][6])
+                        else:
+                            print(lista_jugadores[k] + ": Puntos totales=",
+                                  lista_jugadores_juego[k][lista_jugadores[k]][6],
+                                  ", Puntos apostados=", lista_jugadores_juego[k][lista_jugadores[k]][5])
+                    apuesta_valida = False
+                    # Crecimiento de apuestas:
+                    # Mano 1 - 5: Apuesta min.: 2 ptos. - Apuesta max.: 5  ptos.
+                    # Mano 6 - 12: Apuesta min.: 3 ptos. - Apuesta max.: 6 ptos.
+                    # Mano 13 - 18: Apuesta min.: 4 ptos. - Apuesta max.: 8 ptos.
+                    # Mano 19 - 25: Apuesta min.: 5ptos. - Apuesta max.: 10ptos.
+                    # Mano 26 - 30: Apuesta min.: 6ptos. - Apuesta max.: 12ptos.
+                    if lista_jugadores_juego[i][lista_jugadores[i]][7] >= 1 and \
+                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 5:
+                        apuesta_minima = 2
+                        apuesta_maxima = 5
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 6 and \
+                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 12:
+                        apuesta_minima = 3
+                        apuesta_maxima = 6
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 13 and \
+                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 18:
+                        apuesta_minima = 4
+                        apuesta_maxima = 8
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 19 and \
+                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 25:
+                        apuesta_minima = 5
+                        apuesta_maxima = 10
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][7] >= 26 and \
+                            lista_jugadores_juego[i][lista_jugadores[i]][7] <= 30:
+                        apuesta_minima = 6
+                        apuesta_maxima = 12
+                    if i != 0:
+                        if lista_jugadores_juego[i][lista_jugadores[i]][8]=="humano":
+                            while apuesta_valida == False:
+                                if lista_jugadores_juego[i][lista_jugadores[i]][6] < apuesta_minima:
+                                    print( "La apuesta mínima es mayor que tus puntos restantes. Debes apostar todos tus puntos")
+                                    apuesta_minima = lista_jugadores_juego[i][lista_jugadores[i]][6]
+                                    apuesta_maxima = lista_jugadores_juego[i][lista_jugadores[i]][6]
+                                apuesta = int(input("Cuantos puntos quieres apostar? (min. " + str(apuesta_minima) + " , max." + str(apuesta_maxima) + ") "))
+                                if apuesta < apuesta_minima or apuesta > apuesta_maxima:
+                                    print("Mínimo=", apuesta_minima, ", Máximo=", apuesta_maxima)
+                                elif lista_jugadores_juego[i][lista_jugadores[i]][6] - apuesta < 0:
+                                    print("No puedes apostar más puntos de los que tienes")
+                                else:
+                                    apuesta_valida = True
+                        else:
+                            if lista_jugadores_juego[i][lista_jugadores[i]][6] < apuesta_minima:
+                                apuesta_minima = lista_jugadores_juego[i][lista_jugadores[i]][6]
+                                apuesta_maxima = lista_jugadores_juego[i][lista_jugadores[i]][6]
+                            apuesta=random.randint(apuesta_minima,apuesta_maxima)
+                            print("Apuesta de "+lista_jugadores[i]+": "+str(apuesta)+" puntos")
+                        lista_jugadores_juego[i][lista_jugadores[i]][5] = apuesta
+                        lista_jugadores_juego[i][lista_jugadores[i]][6] = lista_jugadores_juego[i][lista_jugadores[i]][6] - apuesta
+                    while lista_jugadores_juego[i][lista_jugadores[i]][1] == "jugando":
+                        if lista_jugadores_juego[i][lista_jugadores[i]][8]=="humano":
+                            print("Puntos acumulados en la mano=", lista_jugadores_juego[i][lista_jugadores[i]][4])
+                            opcion = int(input("Qué quieres hacer?\n1) Pedir Carta\n2) Plantarme\n"))
+                            while opcion < 1 or opcion > 2:
+                                opcion = int(input("Opción incorrecta!\n"))
+                        else:
+                            if lista_jugadores_juego[i][lista_jugadores[i]][4]<lista_jugadores_juego[0][lista_jugadores[0]][4]:
+                                opcion=1
+                            else:
+                                cartas_no_pasarte=0
+                                for i in mazo:
+                                    if lista_jugadores_juego[i][lista_jugadores[i]][4]+i[2]<=7.5:
+                                        cartas_no_pasarte=cartas_no_pasarte+1
+                                probabilidad=cartas_no_pasarte/len(mazo)
+                                if probabilidad>0.65:
+                                    opcion=1
+                                elif probabilidad>=0.50 and probabilidad<=0.65:
+                                    opcion=1
+                                elif probabilidad<0.50:
+                                    opcion=2
+                        if opcion == 2:
+                            lista_jugadores_juego[i][lista_jugadores[i]][1] = "plantado"
+                        elif opcion == 1:
+                            carta = random.choice(mazo)
+                            cartas_que_han_salido.append(carta)
+                            mazo.remove(carta)
+                            if carta[1] == 1:
+                                palo = "Oros"
+                            elif carta[1] == 2:
+                                palo = "Copas"
+                            elif carta[1] == 3:
+                                palo = "Bastos"
+                            elif carta[1] == 4:
+                                palo = "Espadas"
+                            print("Carta que ha salido:", carta[0], "de", palo)
+                            lista_jugadores_juego[i][lista_jugadores[i]][0].append(carta)
+                            lista_jugadores_juego[i][lista_jugadores[i]][4] = \
+                            lista_jugadores_juego[i][lista_jugadores[i]][4] + carta[2]
+                            if lista_jugadores_juego[i][lista_jugadores[i]][4] > 7.5:
+                                print("Te has pasado de 7,5!")
+                                lista_jugadores_juego[i][lista_jugadores[i]][1] = "eliminado"
+                                input("Presiona ENTER para continuar")
+            banca_cambiada = False
+            if lista_jugadores_juego[0][lista_jugadores[0]][1] == "eliminado":
+                for i in range(1, len(lista_jugadores_juego)):
+                    if lista_jugadores_juego[i][lista_jugadores[i]][1] == "eliminado":
+                        lista_jugadores_juego[0][lista_jugadores[0]][6] = lista_jugadores_juego[0][lista_jugadores[0]][
+                                                                              6] + \
+                                                                          lista_jugadores_juego[i][lista_jugadores[i]][
+                                                                              5]
+                    else:
+                        if lista_jugadores_juego[i][lista_jugadores[i]][4] == 7.5:
+                            if lista_jugadores_juego[0][lista_jugadores[0]][6] < \
+                                    lista_jugadores_juego[i][lista_jugadores[i]][5] and \
+                                    lista_jugadores_juego[0][lista_jugadores[0]][6] != 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5] + \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = 0
+                            elif lista_jugadores_juego[0][lista_jugadores[0]][6] == 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            else:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + 3 * \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] - \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            if banca_cambiada == False:
+                                nueva_posicion = lista_jugadores_juego[0]
+                                nueva_posicion2 = lista_jugadores[0]
+                                nueva_banca = i
+                                banca_cambiada = True
+                        else:
+                            if lista_jugadores_juego[0][lista_jugadores[0]][6] < \
+                                    lista_jugadores_juego[i][lista_jugadores[i]][5] and \
+                                    lista_jugadores_juego[0][lista_jugadores[0]][6] != 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5] + \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = 0
+                            elif lista_jugadores_juego[0][lista_jugadores[0]][6] == 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            else:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + 2 * \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] - \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+            elif lista_jugadores_juego[0][lista_jugadores[0]][4] == 7.5:
+                for i in range(1, len(lista_jugadores_juego)):
+                    lista_jugadores_juego[0][lista_jugadores[0]][6] = lista_jugadores_juego[0][lista_jugadores[0]][6] + \
+                                                                      lista_jugadores_juego[i][lista_jugadores[i]][5]
+            else:
+                for i in range(1, len(lista_jugadores_juego)):
+                    if lista_jugadores_juego[i][lista_jugadores[i]][1] == "eliminado":
+                        lista_jugadores_juego[0][lista_jugadores[0]][6] = lista_jugadores_juego[0][lista_jugadores[0]][
+                                                                              6] + \
+                                                                          lista_jugadores_juego[i][lista_jugadores[i]][
+                                                                              5]
+                    elif lista_jugadores_juego[0][lista_jugadores[0]][4] >= \
+                            lista_jugadores_juego[i][lista_jugadores[i]][4]:
+                        lista_jugadores_juego[0][lista_jugadores[0]][6] = lista_jugadores_juego[0][lista_jugadores[0]][
+                                                                              6] + \
+                                                                          lista_jugadores_juego[i][lista_jugadores[i]][
+                                                                              5]
+                    else:
+                        if lista_jugadores_juego[i][lista_jugadores[i]][4] == 7.5:
+                            if lista_jugadores_juego[0][lista_jugadores[0]][6] < \
+                                    lista_jugadores_juego[i][lista_jugadores[i]][5] and \
+                                    lista_jugadores_juego[0][lista_jugadores[0]][6] != 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5] + \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = 0
+                            elif lista_jugadores_juego[0][lista_jugadores[0]][6] == 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            else:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + 3 * \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] - \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            if banca_cambiada == False:
+                                nueva_posicion = lista_jugadores_juego[0]
+                                nueva_posicion2 = lista_jugadores[0]
+                                nueva_banca = i
+                                banca_cambiada = True
+                        else:
+                            if lista_jugadores_juego[0][lista_jugadores[0]][6] < \
+                                    lista_jugadores_juego[i][lista_jugadores[i]][5] and \
+                                    lista_jugadores_juego[0][lista_jugadores[0]][6] != 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5] + \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = 0
+                            elif lista_jugadores_juego[0][lista_jugadores[0]][6] == 0:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                            else:
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] = \
+                                lista_jugadores_juego[i][lista_jugadores[i]][6] + 2 * \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] = \
+                                lista_jugadores_juego[0][lista_jugadores[0]][6] - \
+                                lista_jugadores_juego[i][lista_jugadores[i]][5]
+            if banca_cambiada == True:
+                lista_jugadores_juego[nueva_banca], lista_jugadores_juego[0] = lista_jugadores_juego[0], \
+                                                                               lista_jugadores_juego[nueva_banca]
+                lista_jugadores[nueva_banca], lista_jugadores[0] = lista_jugadores[0], lista_jugadores[nueva_banca]
+                lista_jugadores_juego.remove(nueva_posicion)
+                lista_jugadores.remove(nueva_posicion2)
+                lista_jugadores_juego.append(nueva_posicion)
+                lista_jugadores.append(nueva_posicion2)
+            for i in range(len(lista_jugadores_juego)):
+                lista_jugadores_juego[i][lista_jugadores[i]][5] = 0
+                lista_jugadores_juego[i][lista_jugadores[i]][0] = []
+                lista_jugadores_juego[i][lista_jugadores[i]][4] = 0
+                lista_jugadores_juego[i][lista_jugadores[i]][1] = "jugando"
+            for i in range(len(lista_jugadores_juego)):
+                if lista_jugadores_juego[i][lista_jugadores[i]][6] == 0:
+                    lista_jugadores_juego[i][lista_jugadores[i]][1] = "eliminado"
+                    lista_jugadores_juego[i][lista_jugadores[i]][2] = "eliminado"
+                    eliminado = lista_jugadores_juego[i]
+                    eliminado2 = lista_jugadores[i]
+                    lista_jugadores_juego.remove(eliminado)
+                    lista_jugadores.remove(eliminado2)
+                    lista_jugadores_juego.append(eliminado)
+                    lista_jugadores.append(eliminado2)
+
+            for i in range(len(cartas_que_han_salido)):
+                mazo.append(cartas_que_han_salido[i])
+            cartas_que_han_salido = []
+            for i in range(len(lista_jugadores_juego)):
+                lista_jugadores_juego[i][lista_jugadores[i]][3] = i
+            contador = 0
+            for i in range(len(lista_jugadores_juego)):
+                if lista_jugadores_juego[i][lista_jugadores[i]][2] == "jugando":
+                    contador = contador + 1
+            if contador <= 1 or lista_jugadores_juego[0][lista_jugadores[0]][7] == 30:
+                partida = False
+            else:
+                print("Orden y puntuación de cada jugador:")
+                for i in range(len(lista_jugadores_juego)):
+                    if i == 0:
+                        print(str(i) + ". " + lista_jugadores[i] + " (Banca) - " + str(
+                            lista_jugadores_juego[i][lista_jugadores[i]][6]) + " puntos")
+                    elif lista_jugadores_juego[i][lista_jugadores[i]][2] == "eliminado":
+                        print(str(i) + ". " + lista_jugadores[i] + " - " + str(
+                            lista_jugadores_juego[i][lista_jugadores[i]][6]) + " puntos (eliminado)")
+                    else:
+                        print(str(i) + ". " + lista_jugadores[i] + " - " + str(
+                            lista_jugadores_juego[i][lista_jugadores[i]][6]) + " puntos")
+                input("Presiona ENTER para continuar")
+        punt_maxima = 0
+        for i in range(len(lista_jugadores_juego)):
+            if lista_jugadores_juego[i][lista_jugadores[i]][6] > punt_maxima:
+                punt_maxima = lista_jugadores_juego[i][lista_jugadores[i]][6]
+                ganador = lista_jugadores[i]
+        print("Ha ganado", ganador, "!!!")
