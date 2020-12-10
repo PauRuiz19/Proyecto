@@ -1,8 +1,8 @@
 -las variables que se añaden con un int(input()), si escribo algo que no sea solo números (aunque sea un enter), el juego deja de funcionar. Sé que es normal pero, como seguramente se forzarán los fallos, se notará que fallará.
 -haria falta, para que se vea mejor visualmente, añadir un espacio a parte cada vez que se haga una acción.
  Cuando eliges las opciones (pedir carta o plantarse, por ejemplo), se ve bien igualmente pero, cuando se hace
- la parte del enter, se queda todo junto.
--en el fragmento de código del crecimiento de las apuestas, hay lineas de código que se repiten.
+ la parte del enter, se queda todo junto. [CORRECCIÓN AÑADIDO A MI VERSIÓN]
+-en el fragmento de código del crecimiento de las apuestas, hay lineas de código que se repiten. [CORRECCIÓN AÑADIDO A MI VERSIÓN]
 
 ---PARTIDA DE PRUEBA (COMO SE VERIA SI SE AÑADEN ESPACIOS A PARTE)---
 Qué modo de juego quieres jugar?
