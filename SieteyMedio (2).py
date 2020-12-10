@@ -296,14 +296,36 @@ else:
                 ganador=lista_jugadores[i]
         print("Ha ganado",ganador,"!!!")
 
+#-----------------------------------------------IDEA CÓDIGO MODO HUMANOS VS BOTS-----------------------------------------------
+    elif modo_juego == 2:
+        numero_jugadores = int(input("Cuántos jugadores van a jugar? (mín. 1, máx. 7)\n"))
+        while numero_jugadores < 1 or numero_jugadores > 7:
+            numero_jugadores = int(input("Debe estar entre 1 y 7: "))
+        else:
+            lista_jugadores = []
+            while len(lista_jugadores) < numero_jugadores:
+                nuevo_jugador = str(input("Introduce el nombre del jugador: "))
+                while nuevo_jugador.isalnum() == False:
+                    nuevo_jugador = str(
+                        input(
+                            "Solo puede tener números y letras, no puede tener espacios y debe empezar por una letra: "))
+                else:
+                    lista_jugadores.append(nuevo_jugador)
+            print(lista_jugadores)
 
+        numero_bots = int(input("Cuántos bots van a jugar (mín. 1, máx. 7 - número de jugadores)\n"))
+        while numero_bots < 1 or numero_bots > 8 - numero_jugadores:
+            numero_bots = int(input("Debe estar entre 1 y 7 - número de jugadores: "))
+        else:
+            lista_bots = []
+            for i in range(1, numero_bots + 1, 1):
+                nuevo_jugador = "CPU", i
+                lista_bots.append(nuevo_jugador)
 
+            print(lista_bots)
 
+            lista_jugadores.extend(lista_bots)
 
+            del lista_bots
 
-
-
-
-
-
-    #elif modo_juego==2:
+            print(lista_jugadores)
