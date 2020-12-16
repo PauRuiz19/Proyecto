@@ -1,0 +1,353 @@
+<!DOCTYPE html!>
+<html>
+  <link href="./style.css" rel="stylesheet">
+  <head>
+    <title>Informes Proyecto</title>
+  </head>
+  <body>
+    <header id="inicio">
+	  <h1>Página de informes del Proyecto</h1>
+	  <p>Bienvenido a la página que muestra todos los informes de las partidas jugadas. Estos son los 14 informes que mostraremos:</p>
+	  <ol>
+	    <li><a href="#informe1">Carta inicial más repetida por cada jugador</a></li>
+		<li><a href="#informe2">Jugador que realiza la apuesta más alta por partida</a></li>
+		<li><a href="#informe3">Jugador que realiza apuesta más baja por partida</a></li>
+		<li><a href="#informe4">Ratio  de turnos ganados por jugador en cada partida (%)</a></li>
+		<li><a href="#informe5">Porcentaje de partidas ganadas Bots en general</a></li>
+		<li><a href="#informe6">Datos de los jugadores y el tiempo que han durado sus partidas ganadas cuya puntuación obtenida es mayor que la media puntos de las partidas ganadas totales</a></li>
+		<li><a href="#informe7">Cuántas rondas se ganan en cada partida según el palo</a></li>
+		<li><a href="#informe8">Cuantas rondas gana la banca en cada partida</a></li>
+		<li><a href="#informe9">Cuántos usuarios han sido la banca en cada partida</a></li>
+		<li><a href="#informe10">Partida con la puntuación más alta final de todos los jugadores</a></li>
+		<li><a href="#informe11">Apuesta media por partida</a></li>
+		<li><a href="#informe12">Datos de los usuarios que no son bot, así como cual ha sido su última apuesta en cada partida que ha jugado</a></li>
+		<li><a href="#informe13">Valor total de las cartas y el numero total de cartas que se han dado inicialmente en las manos en la partida</a></li>
+		<li><a href="#informe14">Diferencia de puntos de los participantes de las partidas entre la ronda 1 y 5</a></li>
+	  </ol>
+	</header>
+	<div id="informe1">
+	  <h3>Carta inicial más repetida por cada jugador</h3>
+	  <p>Informe que muestra cual ha sido la carta inicial más repetida por cada jugador, mostrando el id de la carta</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe2">
+	  <h3>Jugador que realiza la apuesta más alta por partida</h3>
+	  <p>Informe que muestra la apuesta más alta por partida y el jugador que la ha realizado</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>Nombre</th>
+             <th>Apuesta más alta</th>
+             <th>idpartida</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>Rafa</td>
+                 <td>2.00</td>
+                 <td>4</td>
+             </tr>
+             <tr>
+                 <td>Rafa</td>
+                 <td>2.00</td>
+                 <td>5</td>
+             </tr>
+             <tr>
+                 <td>Belen</td>
+                 <td>17.00</td>
+                 <td>1</td>
+             </tr>
+             <tr>
+                 <td>BotBeige</td>
+                 <td>10.00</td>
+                 <td>2</td>
+             </tr>
+             <tr>
+                 <td>BotBeige</td>
+                 <td>2.00</td>
+                 <td>3</td>
+             </tr>
+            </tbody>
+         </table>
+         <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe3">
+	  <h3>Jugador que realiza la apuesta más baja por partida</h3>
+	  <p>Informe que muestra la apuesta más baja por partida y el jugador que la ha realizado</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>nombre</th>
+             <th>Apuesta más baja</th>
+             <th>idpartida</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>Rafa</td>
+                 <td>2.00</td>
+                 <td>1</td>
+             </tr>
+             <tr>
+                 <td>Rafa</td>
+                 <td>1.00</td>
+                 <td>4</td>
+             </tr>
+             <tr>
+                 <td>Rafa</td>
+                 <td>1.00</td>
+                 <td>5</td>
+             </tr>
+             <tr>
+                 <td>Jordi</td>
+                 <td>1.00</td>
+                 <td>2</td>
+             </tr>
+             <tr>
+                 <td>BotBeige</td>
+                 <td>1.00</td>
+                 <td>3</td>
+             </tr>
+            </tbody>
+         </table>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe4">
+	  <h3>Ratio  de turnos ganados por jugador en cada partida (%)</h3>
+	  <p>Informe que muestra el ratio de turnos que gana cada jugador por partida en porcentaje</p>
+          <table border="1">
+         <thead>
+           <tr>
+             <th>username</th>
+             <th>nombre_sala</th>
+             <th>Porcentaje rondas ganadas</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>Jenni</td>
+                 <td>Sala AWS</td>
+                 <td>83.33</td>
+             </tr>
+             <tr>
+                 <td>Belen</td>
+                 <td>Sala AWS</td>
+                 <td>66.67</td>
+             </tr>
+             <tr>
+                 <td>Rafa</td>
+                 <td>Sala AWS</td>
+                 <td>50.00</td>
+             </tr>
+             <tr>
+                 <td>Jordi</td>
+                 <td>Sala AMS</td>
+                 <td>54.55</td>
+             </tr>
+             <tr>
+                 <td>Jordi</td>
+                 <td>Sala Xavi contra el Bot</td>
+                 <td>94.12</td>
+             </tr>
+             <tr>
+                 <td>Leandro</td>
+                 <td>Sala Rafa contra Leandro</td>
+                 <td>94.12</td>
+             </tr>
+             <tr>
+                 <td>Leandro</td>
+                 <td>Sala Rafa contra Leandro 2</td>
+                 <td>94.12</td>
+             </tr>
+             <tr>
+                 <td>BotBeige</td>
+                 <td>Sala AMS</td>
+                 <td>63.16</td>
+             </tr>
+             <tr>
+                 <td>BotNegro</td>
+                 <td>Sala AMS</td>
+                 <td>50.00</td>
+             </tr>
+            </tbody>
+         </table>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe5">
+	  <h3>Porcentaje de partidas ganadas Bots en general</h3>
+	  <p>Informe que muestra el porcentaje de partidas que han ganado los jugadores Bot</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe6">
+	  <h3>Datos de los jugadores y el tiempo que han durado sus partidas ganadas</h3>
+	  <p>Informe que muestra los datos de cada jugador y cuánto tiempo han durado las partidas que han ganado</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe7">
+	  <h3>Cuántas rondas se ganan en cada partida según el palo</h3>
+	  <p>Informe que muestra las rondas que se ganan en cada partida según el palo de la carta inicial</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe8">
+	  <h3>Cuantas rondas gana la banca en cada partida</h3>
+	  <p>Informe que muestra las rondas ganadas por la banca en cada partida</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>idpartida</th>
+             <th>Turnos ganados de la banca</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>1</td>
+                 <td>13</td>
+             </tr>
+             <tr>
+                 <td>2</td>
+                 <td>26</td>
+             </tr>
+             <tr>
+                 <td>3</td>
+                 <td>16</td>
+             </tr>
+             <tr>
+                 <td>4</td>
+                 <td>16</td>
+             </tr>
+             <tr>
+                 <td>5</td>
+                 <td>16</td>
+             </tr>
+            </tbody>
+         </table>
+         <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe9">
+	  <h3>Cuántos usuarios han sido la banca en cada partida</h3>
+	  <p>Informe que muestra el número de usuarios que han sido banca en cada partida</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>idpartida</th>
+             <th>Nº usuarios banca</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>1</td>
+                 <td>4</td>
+             </tr>
+             <tr>
+                 <td>2</td>
+                 <td>3</td>
+             </tr>
+             <tr>
+                 <td>3</td>
+                 <td>2</td>
+             </tr>
+             <tr>
+                 <td>4</td>
+                 <td>1</td>
+             </tr>
+             <tr>
+                 <td>5</td>
+                 <td>1</td>
+             </tr>
+            </tbody>
+         </table>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe10">
+	  <h3>Partida con la puntuación más alta final de todos los jugadores</h3>
+	  <p>Informe que muestra cuál ha sido la partida con la puntuación más alta de cada jugador</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe11">
+	  <h3>Apuesta media por partida</h3>
+	  <p>Informe que muestra cual ha sido la apuesta media por partida.</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>idpartida</th>
+             <th>Apuesta media</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>1</td>
+                 <td>6.31</td>
+             </tr>
+             <tr>
+                 <td>2</td>
+                 <td>3.03</td>
+             </tr>
+             <tr>
+                 <td>3</td>
+                 <td>1.25</td>
+             </tr>
+             <tr>
+                 <td>4</td>
+                 <td>1.25</td>
+             </tr>
+             <tr>
+                 <td>5</td>
+                 <td>1.25</td>
+             </tr>
+            </tbody>
+         </table>
+         <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe12">
+	  <h3>Datos de los usuarios que no son bot, así como cual ha sido su última apuesta en cada partida que ha jugado</h3>
+	  <p>Informe que muestra los todos datos de los jugadores humanos y su última apuesta en cada partida jugada</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe13">
+	  <h3>Valor total de las cartas y el número total de cartas que se han dado inicialmente en las manos en la partida</h3>
+	  <p>Informe que muestra el número de cartas que se han repartido y el valor total de éstas por partida</p>
+	  <table border="1">
+         <thead>
+           <tr>
+             <th>idpartida</th>
+             <th>Cartas que se han dado</th>
+             <th>Valor total de las cartas</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>1</td>
+                 <td>22</td>
+                 <td>68.00</td>
+             </tr>
+             <tr>
+                 <td>2</td>
+                 <td>56</td>
+                 <td>166.50</td>
+             </tr>
+             <tr>
+                 <td>3</td>
+                 <td>32</td>
+                 <td>90.00</td>
+             </tr>
+             <tr>
+                 <td>4</td>
+                 <td>32</td>
+                 <td>83.50</td>
+             </tr>
+             <tr>
+                 <td>5</td>
+                 <td>32</td>
+                 <td>92.00</td>
+             </tr>
+            </tbody>
+         </table>
+         <a href="#inicio">Volver al inicio</a>
+	</div>
+	<div id="informe14">
+	  <h3>Diferencia de puntos de los participantes de las partidas entre la ronda 1 y 5</h3>
+	  <p>Informe que muestra la diferencia de puntos de cada participante entre la ronda 1 y 5 en cada partida</p>
+	  <a href="#inicio">Volver al inicio</a>
+	</div>
+  </body>
+</html>
