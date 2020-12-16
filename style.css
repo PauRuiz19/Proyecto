@@ -1,0 +1,14 @@
+div{
+  background-color: 8CEFFF;
+  border: solid;
+  border-radius: 20px;
+  margin:50 300;
+  padding: 5;
+}
+
+th{
+  font-family: Courier;
+}
+table{
+  margin: auto;
+}
